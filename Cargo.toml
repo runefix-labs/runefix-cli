@@ -1,0 +1,51 @@
+[package]
+name = "runefix-cli"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+authors = ["Pokeya Z. Chen"]
+license = "MIT OR Apache-2.0"
+description = "Unified CLI frontend for runefix tools: width detection, markdown formatter, and terminal testing"
+readme = "README.md"
+
+# Links
+repository = "https://github.com/runefix-labs/runefix-cli"
+homepage = "https://github.com/runefix-labs/runefix-cli"
+
+# Index metadata
+keywords = ["cli", "unicode", "terminal", "formatter", "cjk"]
+categories = ["command-line-utilities", "text-processing"]
+
+# Publish control
+include = [
+    "src/**",
+    "Cargo.toml",
+    "Cargo.lock",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE*",
+    "examples/output.txt"
+]
+
+# Dependencies
+[dependencies]
+anyhow = "1.0"
+atty = "0.2"
+inquire = "0.7"
+clap = { version = "4.5", features = ["derive"] }
+runefix-core = { version = "0.1", features = ["policy"] }
+unicode-segmentation = "1.12"
+
+# Binary config
+[[bin]]
+name = "runefix"
+path = "src/main.rs"
+
+# Optimized release profile
+[profile.release]
+opt-level = "z"
+lto = true
+strip = true
+codegen-units = 1
+panic = "abort"
+incremental = false

@@ -1,0 +1,201 @@
+##################################
+#              Help              #
+##################################
+
+➜ ~ runefix -h
+Unicode-aware display width CLI
+
+Usage: runefix <COMMAND>
+
+Commands:
+  atoms      Segment input into display-sensitive width atoms
+  graphemes  Split input into grapheme clusters
+  width      Measure total display width of input
+  widths     Show width of each segment
+  split      Split input text into segments fitting width
+  truncate   Truncate input to a max width (preserving layout)
+  slice      Slice input using [start:end] style expression
+  version    Show version information
+  init       Initialize user configuration
+  help       Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help     Print help (see more with '--help')
+  -V, --version  Print version
+
+
+##################################
+#         Init subcommand        #
+##################################
+
+➜ ~ runefix init
+? 🎛️  Select your preferred language:
+> 🇺🇸 English (en-US)
+  🇨🇳 简体中文 (zh-CN)
+  🇯🇵 日本語 (ja-JP)
+
+// After pressing Enter, you'll see:
+> 🎛️  Select your preferred language: 🇺🇸 English (en-US)
+
+✅  Language saved to "~/.config/runefix/config"
+
+
+##################################
+#        Atoms subcommand        #
+##################################
+
+➜ ~ runefix atoms "Love 👩‍❤️‍💋‍👨"
+
+🧬 Unicode Atom Info
+───────────────────────────────────────────────────────
+ No.    Rune    Unicode / Hint                  Width
+───────────────────────────────────────────────────────
+ 00     L       U+004C                              1
+ 01     o       U+006F                              1
+ 02     v       U+0076                              1
+ 03     e       U+0065                              1
+ 04             U+0020                              1
+ 05     👩      U+1F469                             2
+ 06     ''      U+200D  (ZWJ)                       0
+ 07     ❤       U+2764                              1
+ 08     ''      U+FE0F  (Emoji Variant)             0
+ 09     ''      U+200D  (ZWJ)                       0
+ 10     💋      U+1F48B                             2
+ 11     ''      U+200D  (ZWJ)                       0
+ 12     👨      U+1F468                             2
+───────────────────────────────────────────────────────
+                          「Total Display Width」: 12
+
+📘 Legend:
+ZWJ = Zero Width Joiner (U+200D)
+Emoji Variant = U+FE0F (Forces Emoji Presentation)
+Combining Mark = U+20E3 (Combining Enclosing Keycap)
+Skin Tone = U+1F3FB–U+1F3FF (Fitzpatrick Modifiers)
+Hair Colors = U+1F9B0–U+1F9B3 (Hair/Beard modifiers)
+
+
+##################################
+#      Graphemes subcommand      #
+##################################
+
+➜ ~ runefix graphemes "Hello 👋 世界"
+
+🧩 Grapheme Clusters
+───────────────────────────────────────────────────────
+ No.    Grapheme    Width
+───────────────────────────────────────────────────────
+ 00     H           1
+ 01     e           1
+ 02     l           1
+ 03     l           1
+ 04     o           1
+ 05                 1
+ 06     👋          2
+ 07                 1
+ 08     世          2
+ 09     界          2
+───────────────────────────────────────────────────────
+
+
+##################################
+#        Width subcommand        #
+##################################
+
+➜ ~ runefix width --verbose "Hello 👋 世界"
+
+📏 Display Width
+───────────────────────────────────────────────────────
+Text: "Hello 👋 世界"
+Policy: Terminal
+
+Display Width = 13 columns
+
+
+##################################
+#       Widths subcommand        #
+##################################
+
+➜ ~ runefix widths --verbose "Hello 👋 世界"
+
+📐 Width Per Character
+───────────────────────────────────────────────────────
+[H] = 1
+[e] = 1
+[l] = 1
+[l] = 1
+[o] = 1
+[ ] = 1
+[👋] = 2
+[ ] = 1
+[世] = 2
+[界] = 2
+
+
+##################################
+#       Split subcommand         #
+##################################
+
+➜ ~ runefix split --width 5 --verbose "Hello 👋 世界"
+
+🪓 Split Lines
+───────────────────────────────────────────────────────
+Line 1:    [Hello] (width = 5)
+Line 2:    [ 👋  ] (width = 4)
+Line 3:    [世界 ] (width = 4)
+
+
+##################################
+#      Truncate subcommand       #
+##################################
+
+➜ ~ runefix truncate --width 5 --verbose "Hello 👋 世界"
+
+📉 Truncated Output
+───────────────────────────────────────────────────────
+Hello
+
+
+##################################
+#       Version subcommand       #
+##################################
+
+➜ ~ runefix version
+
+🪪 Runefix Version Info
+───────────────────────────────────────────────────────
+Runefix CLI     0.1.0
+Runefix Core    0.1.10
+Unicode Data    16.0.0
+
+➜ ~ runefix version --json
+{
+  "cli-version": "0.1.0",
+  "core-version": "0.1.10",
+  "unicode-version": "16.0.0"
+}
+
+
+##################################
+#        Slice subcommand        #
+##################################
+
+➜ ~ runefix slice [0:5] "Hello, World!"
+➜ ~ echo "Hello, World!" | runefix slice [0:5]
+➜ ~ runefix slice [0:5] <<EOF
+Hello, World!
+EOF
+
+➜ ~ runefix slice [0:1] "Hello, World!"
+➜ ~ runefix slice "[7:]" "Hello, World!"
+➜ ~ runefix slice "[:5]" "Hello, World!"
+➜ ~ runefix slice "[:]" "Hello, World!"
+➜ ~ runefix slice "[4]" "Hello, World!"
+
+➜ ~ runefix slice -v "[:10]" "你好👨‍👩‍👧‍👦Hello世界"
+
+➜ ~ runefix slice -g "[0:3]" "你好👨‍👩‍👧‍👦Hello世界"
+➜ ~ runefix slice -c "[0:5]" "你好👨‍👩‍👧‍👦Hello世界"
+➜ ~ runefix slice -w "[0:6]" "你好👨‍👩‍👧‍👦Hello世界"
+
+➜ ~ ps aux | runefix slice "[:200]"'
+➜ ~ ps aux | runefix slice "[:200]" --strict'
