@@ -2,6 +2,11 @@
 
 **Runefix CLI** is a powerful, minimal, and precise command-line toolkit for working with Unicode text — especially in CJK and terminal environments. It acts as the unified frontend for the [`runefix-core`](https://crates.io/crates/runefix-core) engine.
 
+[![Crates.io](https://img.shields.io/crates/v/runefix-cli)](https://crates.io/crates/runefix-cli)
+[![Rust Version](https://img.shields.io/badge/rust-1.85%2B-orange)](https://www.rust-lang.org)
+[![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](./LICENSE)
+[![CI](https://github.com/runefix-labs/runefix-cli/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/runefix-labs/runefix-cli/actions/workflows/ci.yml)
+
 ---
 
 ## ✨ Features
