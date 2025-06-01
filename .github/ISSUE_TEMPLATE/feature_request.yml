@@ -1,0 +1,45 @@
+name: ✨ Feature Request
+description: Suggest a new feature or enhancement for Runefix CLI.
+labels: [enhancement, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea for improvement? Let us know what you’re thinking!
+
+  - type: input
+    id: title
+    attributes:
+      label: Feature Title
+      placeholder: Add customizable output formatting...
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Feature Description
+      description: Describe the feature you’d like to see and why it would be useful.
+    validations:
+      required: true
+
+  - type: textarea
+    id: usecase
+    attributes:
+      label: Use Case / Motivation
+      description: Why do you need this feature? What problem does it solve?
+
+  - type: textarea
+    id: alternative
+    attributes:
+      label: Alternatives Considered
+      description: Have you tried any workarounds or other tools?
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope of Impact
+      options:
+        - label: CLI commands or arguments
+        - label: Output formatting
+        - label: Unicode width policy or layout behavior
+        - label: Docs / help messages
+        - label: Other (please describe)
