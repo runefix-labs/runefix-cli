@@ -106,6 +106,16 @@ See [`LICENSE-MIT`](./LICENSE-MIT) or [`LICENSE-APACHE`](./LICENSE-APACHE) for f
 
 ## 💬 Contributing
 
-PRs, ideas, and feedback are welcome. Star the repo to show support ⭐
+We welcome all forms of contribution — from ideas and bug reports to pull requests and feedback.
 
-For issues related to Unicode behavior, grapheme segmentation, or terminal rendering, feel free to open a discussion!
+**Ways to contribute:**
+
+- 🐞 [Report a bug](https://github.com/runefix-labs/runefix-cli/discussions/categories/bug-reports)
+- 🙋 [Ask a question or get help](https://github.com/runefix-labs/runefix-cli/discussions/categories/help)
+- 💡 [Suggest a new feature](https://github.com/runefix-labs/runefix-cli/discussions/categories/ideas)
+- ✨ [Show off your usage or project](https://github.com/runefix-labs/runefix-cli/discussions/categories/show-tell)
+- 🔧 [Submit a pull request](https://github.com/runefix-labs/runefix-cli/pulls)
+
+If you're unsure where to start, feel free to [start a discussion](https://github.com/runefix-labs/runefix-cli/discussions) — we're friendly!
+
+⭐ Star the repo if you find it useful — it helps the project grow.
