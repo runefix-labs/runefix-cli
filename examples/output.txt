@@ -197,5 +197,5 @@ EOF
 ➜ ~ runefix slice -c "[0:5]" "你好👨‍👩‍👧‍👦Hello世界"
 ➜ ~ runefix slice -w "[0:6]" "你好👨‍👩‍👧‍👦Hello世界"
 
-➜ ~ ps aux | runefix slice "[:200]"'
-➜ ~ ps aux | runefix slice "[:200]" --strict'
+➜ ~ ps aux | runefix slice "[:200]"
+➜ ~ ps aux | runefix slice "[:200]" --strict
